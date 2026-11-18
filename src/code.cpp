@@ -10,12 +10,12 @@
 
 // Uncomment the author block below and fill in your name:
 
-// std::string AUTHOR_NAME       = "Your Name";
-// std::string AUTHOR_AUTHORSHIP = "I acknowledge that I have worked on this "
-// "assignment independently, except where explicitly noted and referenced. "
-// "Any collaboration or use of external resources has been properly cited. "
-// "I am fully aware of the consequences of academic dishonesty and agree "
-// "to abide by the university's academic integrity policy.";
+std::string AUTHOR_NAME       = "Terren Foster";
+std::string AUTHOR_AUTHORSHIP = "I acknowledge that I have worked on this "
+"assignment independently, except where explicitly noted and referenced. "
+"Any collaboration or use of external resources has been properly cited. "
+"I am fully aware of the consequences of academic dishonesty and agree "
+"to abide by the university's academic integrity policy.";
 
 // ============================================================
 // PART 1: Shape, Circle, Square, Rectangle
@@ -25,12 +25,21 @@
 bool Shape::operator<(const Shape &other) const
 {
     // TODO: compare area() of both shapes with <
-    return false;
+    if (area() < other.area())
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
 
 /// Constructor with a member initializer list.
 Circle::Circle(double newRadius)
+    : radius(newRadius)
 {
+
     // TODO: move the initialization of 'radius' into an initializer list
 }
 
@@ -38,7 +47,7 @@ Circle::Circle(double newRadius)
 double Circle::area() const
 {
     // TODO: implement
-    return 0.0;
+    return std::numbers::pi * radius * radius;
 }
 
 /// Return exactly "Circle".
