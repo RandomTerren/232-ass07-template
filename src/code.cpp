@@ -25,21 +25,13 @@ std::string AUTHOR_AUTHORSHIP = "I acknowledge that I have worked on this "
 bool Shape::operator<(const Shape &other) const
 {
     // TODO: compare area() of both shapes with <
-    if (area() < other.area())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    return area() < other.area();
 }
 
 /// Constructor with a member initializer list.
 Circle::Circle(double newRadius)
     : radius(newRadius)
 {
-
     // TODO: move the initialization of 'radius' into an initializer list
 }
 
@@ -54,10 +46,11 @@ double Circle::area() const
 std::string Circle::name() const
 {
     // TODO: implement
-    return "";
+    return std::cout << name(Circle);
 }
 
 Square::Square(double newSide)
+    : side(newSide)
 {
     // TODO: initializer list
 }
@@ -66,7 +59,7 @@ Square::Square(double newSide)
 double Square::area() const
 {
     // TODO: implement
-    return 0.0;
+    return side * side;
 }
 
 /// Return exactly "Square".
