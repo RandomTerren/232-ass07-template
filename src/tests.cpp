@@ -95,12 +95,26 @@ void test_list_add_null_guard(void)
 /// "Circle", "Square", "Rectangle" and isSorted() is true.
 void test_insertionSort_orders_by_area(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    ShapeList list;
+    list.addShape(new Circle(1));
+    list.addShape(new Square(2));
+    list.addShape(new Rectangle(2,5));
+    TEST_ASSERT_TRUE_MESSAGE(list.nameAt(0) == "Circle", "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(list.nameAt(1) == "Square", "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(list.nameAt(2) == "Rectangle", "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(list.isSorted(), "TODO: Implement this test");
 }
 
 /// Call insertionSort() on an EMPTY list: no crash, length() is 0.
 /// Then add ONE shape and sort again: length() is 1 and nameAt(0) is unchanged.
 void test_insertionSort_empty_and_single(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    ShapeList list;
+    list.insertionSort();
+    TEST_ASSERT_TRUE_MESSAGE(list.length() == 0, "TODO: Implement this test");
+    list.addShape(new Square(2));
+    list.insertionSort();
+    TEST_ASSERT_TRUE_MESSAGE(list.length() == 1, "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(list.nameAt(0) == "Square", "TODO: Implement this test");
+
 }
