@@ -46,7 +46,13 @@ void test_shape_names_through_base_pointer(void)
 /// Verify small < big is true, big < small is false, small < small is false.
 void test_shape_operator_less(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    Square small(1);
+    Square big(2);
+    const Shape& smallShape = small;
+    const Shape& bigShape = big;
+    TEST_ASSERT_TRUE_MESSAGE(smallShape < bigShape, "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(!(bigShape < smallShape), "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(!(smallShape < smallShape), "TODO: Implement this test");
 }
 
 /// Create Square(2) and Rectangle(1, 4): both have area 4.
