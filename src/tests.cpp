@@ -30,7 +30,16 @@ void test_shape_areas(void)
 /// Delete the shapes through the base pointers.
 void test_shape_names_through_base_pointer(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    Shape* shapes[3];
+    shapes[0] = new Circle(1);
+    shapes[1] = new Square(2);
+    shapes[2] = new Rectangle(2, 3);
+    TEST_ASSERT_TRUE_MESSAGE(shapes[0]->name() == "Circle", "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(shapes[1]->name() == "Square", "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(shapes[2]->name() == "Rectangle", "TODO: Implement this test");
+    delete shapes[0];
+    delete shapes[1];
+    delete shapes[2];
 }
 
 /// Create Square(1) and Square(2). Take two const Shape& to them.

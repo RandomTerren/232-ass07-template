@@ -46,7 +46,7 @@ double Circle::area() const
 std::string Circle::name() const
 {
     // TODO: implement
-    return "Circles";
+    return "Circle";
 }
 
 Square::Square(double newSide)
