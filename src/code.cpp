@@ -46,7 +46,7 @@ double Circle::area() const
 std::string Circle::name() const
 {
     // TODO: implement
-    return std::cout << name(Circle);
+    return "Circles";
 }
 
 Square::Square(double newSide)
@@ -66,10 +66,11 @@ double Square::area() const
 std::string Square::name() const
 {
     // TODO: implement
-    return "";
+    return "Square";
 }
 
 Rectangle::Rectangle(double newWidth, double newHeight)
+    : width(newWidth), height(newHeight)
 {
     // TODO: initializer list
 }
@@ -78,14 +79,14 @@ Rectangle::Rectangle(double newWidth, double newHeight)
 double Rectangle::area() const
 {
     // TODO: implement
-    return 0.0;
+    return width * height;
 }
 
 /// Return exactly "Rectangle".
 std::string Rectangle::name() const
 {
     // TODO: implement
-    return "";
+    return "Rectangle";
 }
 
 // ============================================================
@@ -96,13 +97,23 @@ std::string Rectangle::name() const
 ShapeList::~ShapeList()
 {
     // TODO: implement
+    for (Shape * shape : data)
+    {
+        delete shape;
+    }
+    data.clear();
 }
 
 /// Append at the end. Return -1 if newShapePtr is nullptr, 0 on success.
 int ShapeList::addShape(Shape *newShapePtr)
 {
     // TODO: implement
-    return -1;
+    if (newShapePtr == nullptr)
+    {
+        return -1;
+    }
+    data.push_back(newShapePtr);
+    return 0;
 }
 
 /// Delete the first shape and remove it from the list.
@@ -110,28 +121,43 @@ int ShapeList::addShape(Shape *newShapePtr)
 bool ShapeList::removeFirst()
 {
     // TODO: implement
-    return false;
+    if (data.empty())
+    {
+        return false;
+    }
+    delete data.front();
+    data.pop_front();
+    return true;
 }
 
 /// Number of shapes in the list.
 int ShapeList::length() const
 {
     // TODO: implement
-    return 0;
+    return data.size();
 }
 
 /// Sum of area() of all shapes (0.0 if empty).
 double ShapeList::totalArea() const
 {
     // TODO: implement
-    return 0.0;
+    double total = 0.0;
+    for (Shape* shape : data)
+    {
+        total += shape->area();
+    }
+    return total;
 }
 
 /// One line per shape: name, one space, area. Return the number of shapes.
 int ShapeList::printList() const
 {
     // TODO: implement
-    return 0;
+    for (Shape* shape : data)
+    {
+        std::cout << shape->name() << " " << shape->area() << "\n";
+    }
+    return data.size();
 }
 
 /// area() of the shape at index, or std::nullopt if index is out of range.
@@ -139,14 +165,24 @@ int ShapeList::printList() const
 std::optional<double> ShapeList::areaAt(int index) const
 {
     // TODO: implement
-    return std::nullopt;
+    if (index < 0 || index >= data.size())
+    {
+        return std::nullopt;
+    }
+    auto it = std::next(data.begin(), index);
+    return (*it)->area();
 }
 
 /// name() of the shape at index, or std::nullopt if index is out of range.
 std::optional<std::string> ShapeList::nameAt(int index) const
 {
     // TODO: implement
-    return std::nullopt;
+    if (index < 0 || index >= data.size())
+    {
+        return std::nullopt;
+    }
+    auto it = std::next(data.begin(), index);
+    return (*it)->name();
 }
 
 /// Your own STABLE insertion sort, smallest area first.
@@ -156,11 +192,46 @@ std::optional<std::string> ShapeList::nameAt(int index) const
 void ShapeList::insertionSort()
 {
     // TODO: implement
+    if (data.size() < 2)
+    {
+        return;
+    }
+    auto it = std::next(data.begin());
+    while (it != data.end())
+    {
+        auto current = it++;
+        auto pos = current;
+        while (pos != data.begin())
+        {
+            auto prev = std::prev(pos);
+            if (!(**current < ** prev))
+            {
+                break;
+            }
+            pos = prev;
+        }
+        data.splice(pos, data, current);
+    }
 }
 
 /// True if no shape is smaller than the one before it.
 bool ShapeList::isSorted() const
 {
-    // TODO: implement
-    return false;
+    if (data.size() <= 1)
+    {
+        return true;
+    }
+    auto prev = data.begin();
+    auto current = std::next(data.begin());
+    while (current != data.end())
+    {
+        if (**current < **prev)
+        {
+            return false;
+        }
+        ++prev;
+        ++current;
+    }
+    return true;
+   
 }

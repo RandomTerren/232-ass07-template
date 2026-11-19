@@ -16,7 +16,13 @@
 /// Verify area() is pi, 4 and 6 (compare doubles with std::fabs(a - b) < 1e-9).
 void test_shape_areas(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    Circle c(1);
+    Square s(2);
+    Rectangle r(2, 3);
+    
+    TEST_ASSERT_TRUE_MESSAGE(std::fabs(c.area() - std::numbers::pi) < 1e-9, "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(std::fabs(s.area() - 4.0) < 1e-9, "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(std::fabs(r.area() - 6.0) < 1e-9, "TODO: Implement this test");
 }
 
 /// Create an array of three Shape* (a Circle, a Square, a Rectangle) with new.
