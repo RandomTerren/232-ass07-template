@@ -59,7 +59,12 @@ void test_shape_operator_less(void)
 /// Verify that NEITHER a < b NOR b < a is true.
 void test_shape_equal_area_not_less(void)
 {
-    TEST_ASSERT_TRUE_MESSAGE(0, "TODO: Implement this test");
+    Square a(2);
+    Rectangle b(1, 4);
+    const Shape& ShapeA = a;
+    const Shape& ShapeB = b;
+    TEST_ASSERT_TRUE_MESSAGE(!(ShapeA < ShapeB), "TODO: Implement this test");
+    TEST_ASSERT_TRUE_MESSAGE(!(ShapeB < ShapeA), "TODO: Implement this test");
 }
 
 // ============================================================
